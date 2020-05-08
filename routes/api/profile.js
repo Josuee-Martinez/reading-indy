@@ -8,10 +8,10 @@ const Profile = require("../../models/Profile");
 
 router.get("/me", auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      "user",
-      ["name"]
-    );
+    console.log(req.user);
+    const profile = await Profile.findOne({
+      user: req.user.id,
+    }).populate("user", ["name"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "no profile for user" });
@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
 router.get("/user/:user_id", async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     }).populate("user", ["name"]);
 
     if (!profile) return res.status(400).json({ msg: "Profile not found" });
@@ -93,7 +93,7 @@ router.get("/goodreads/:id", (req, res) => {
     const options = {
       uri: `https://www.goodreads.com/user/show/${req.params.id}.xml?key=1dQ8N8cVpCf406mkHQgclQ`,
       method: "GET",
-      headers: { "user-agent": "node.js" }
+      headers: { "user-agent": "node.js" },
     };
 
     request(options, (error, response, body) => {

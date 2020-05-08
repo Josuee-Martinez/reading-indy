@@ -6,22 +6,22 @@ import { addComment } from "../../actions/review";
 const AddComment = ({ reviewId, addComment }) => {
   const [comment, setComment] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     addComment(reviewId, { comment });
   };
 
   return (
-    <form onSubmit={e => handleSubmit(e)} className="form left-align">
+    <form onSubmit={(e) => handleSubmit(e)} className="form-info left-align">
       <textarea
         name="review"
         cols="30"
         rows="10"
         placeholder="Leave a comment"
         required
-        className="input"
+        className="input-info"
         value={comment}
-        onChange={e => setComment(e.target.value)}
+        onChange={(e) => setComment(e.target.value)}
       ></textarea>
       <button type="submit" className="button button-add">
         Comment!
@@ -31,10 +31,7 @@ const AddComment = ({ reviewId, addComment }) => {
 };
 
 AddComment.propTypes = {
-  addComment: PropTypes.func.isRequired
+  addComment: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { addComment }
-)(AddComment);
+export default connect(null, { addComment })(AddComment);

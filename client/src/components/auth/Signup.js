@@ -10,15 +10,15 @@ const Signup = ({ setAlert, signup, authenticated }) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const { name, email, password } = user;
 
-  const handleChange = e =>
+  const handleChange = (e) =>
     setUser({ ...user, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     signup({ user });
@@ -35,13 +35,13 @@ const Signup = ({ setAlert, signup, authenticated }) => {
           <i className="fas fa-users"></i> Sign up!
         </h2>
       </div>
-      <form className="form border" onSubmit={handleSubmit}>
+      <form className="form-info border" onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <br />
         <input
           type="text"
           id="text"
-          className="input"
+          className="input-info"
           name="name"
           required
           value={name}
@@ -52,7 +52,7 @@ const Signup = ({ setAlert, signup, authenticated }) => {
         <input
           type="email"
           id="email"
-          className="input"
+          className="input-info"
           name="email"
           required
           value={email}
@@ -64,7 +64,7 @@ const Signup = ({ setAlert, signup, authenticated }) => {
         <input
           type="password"
           id="password"
-          className="input"
+          className="input-info"
           name="password"
           required
           value={password}
@@ -88,14 +88,11 @@ const Signup = ({ setAlert, signup, authenticated }) => {
 Signup.propTypes = {
   setAlert: PropTypes.func.isRequired,
   signup: PropTypes.func.isRequired,
-  authenticated: PropTypes.bool
+  authenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  authenticated: state.auth.authenticated
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
 });
 
-export default connect(
-  mapStateToProps,
-  { setAlert, signup }
-)(Signup);
+export default connect(mapStateToProps, { setAlert, signup })(Signup);

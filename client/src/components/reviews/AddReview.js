@@ -6,7 +6,7 @@ import { addReview } from "../../actions/review";
 const AddReview = ({ addReview }) => {
   const [bookReview, setBookReview] = useState({
     book: "",
-    review: ""
+    review: "",
   });
 
   const { book, review } = bookReview;
@@ -14,29 +14,29 @@ const AddReview = ({ addReview }) => {
   const clearFields = () => {
     setBookReview({
       book: "",
-      review: ""
+      review: "",
     });
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setBookReview({ ...bookReview, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     addReview({ bookReview });
     clearFields();
   };
 
   return (
-    <form onSubmit={e => handleSubmit(e)} className="form left-align">
+    <form onSubmit={(e) => handleSubmit(e)} className="form-info left-align">
       <input
         type="text"
         name="book"
-        className="input"
+        className="input-info"
         placeholder="Enter a book to review"
         value={book}
-        onChange={e => handleChange(e)}
+        onChange={(e) => handleChange(e)}
       />
       <br />
       <textarea
@@ -45,9 +45,9 @@ const AddReview = ({ addReview }) => {
         rows="10"
         placeholder="Leave a review"
         required
-        className="input"
+        className="input-info"
         value={review}
-        onChange={e => handleChange(e)}
+        onChange={(e) => handleChange(e)}
       ></textarea>
       <button type="submit" className="button button-add">
         review!
@@ -57,10 +57,7 @@ const AddReview = ({ addReview }) => {
 };
 
 AddReview.propTypes = {
-  addReview: PropTypes.func.isRequired
+  addReview: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { addReview }
-)(AddReview);
+export default connect(null, { addReview })(AddReview);

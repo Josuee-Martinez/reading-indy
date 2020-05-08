@@ -10,17 +10,17 @@ const Comment = ({
   reviewId,
   comment: { _id, review, name, user, date },
   auth,
-  deleteComment
+  deleteComment,
 }) => {
   return (
     <Fragment>
-      <div className="form border">
+      <div className="form-info border">
         <Link to={`/profile/${user}`}>
           <img src={UserImg} alt="cool pic" className="user-img" />
           <h2>{name}</h2>
         </Link>
       </div>
-      <div className="form border mb-2">
+      <div className="form-info border mb-2">
         <h2>Comment:</h2>
         <p>{review}</p>
         <p>
@@ -29,7 +29,7 @@ const Comment = ({
         {!auth.loading && user === auth.user._id && (
           <button
             className="button danger"
-            onClick={e => deleteComment(reviewId, _id)}
+            onClick={(e) => deleteComment(reviewId, _id)}
           >
             <i className="fas fa-trash-alt"></i>
           </button>
@@ -43,14 +43,11 @@ Comment.propTypes = {
   reviewId: PropTypes.string.isRequired,
   comment: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  deleteComment: PropTypes.func.isRequired
+  deleteComment: PropTypes.func.isRequired,
 };
 
-const mapStatetoProps = state => ({
-  auth: state.auth
+const mapStatetoProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStatetoProps,
-  { deleteComment }
-)(Comment);
+export default connect(mapStatetoProps, { deleteComment })(Comment);

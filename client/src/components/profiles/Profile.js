@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 const Profile = ({
   profile: {
     user: { _id, name },
-    location
-  }
+    location,
+  },
 }) => {
   return (
-    <div className="form border mt-2 box">
-      <img src={UserImg} alt="user" className="user-img" />
+    <div className="form-info border mt-2 box">
+      {/* <img src={UserImg} alt="user" className="user-img" /> */}
       <h1>{name}</h1>
       <h3>{location && <span>{location}</span>}</h3>
       <Link to={`/profile/${_id}`}>
@@ -22,7 +22,7 @@ const Profile = ({
 };
 
 Profile.propTypes = {
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
 export default Profile;

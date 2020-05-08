@@ -24,14 +24,14 @@ const Review = ({ getReview, review: { review, loading }, match }) => {
       <Link to="/reviews">
         <button className="button button-add">Back</button>
       </Link>
-      <div className="form border mt-2">
+      <div className="form-info border mt-2">
         <Link to={`/profile/${review.user}`}>
           <img src={UserImg} alt="cool guy" className="user-img" />
           <h2>{review.name}</h2>
         </Link>
       </div>
 
-      <div className="form border">
+      <div className="form-info border">
         <h2>Review:</h2>
         <p>{review.review}</p>
         <p>
@@ -40,7 +40,7 @@ const Review = ({ getReview, review: { review, loading }, match }) => {
       </div>
       <AddComment reviewId={review._id} />
       <div>
-        {review.comments.map(comment => (
+        {review.comments.map((comment) => (
           <Comment key={comment._id} comment={comment} reviewId={review._id} />
         ))}
       </div>
@@ -50,14 +50,11 @@ const Review = ({ getReview, review: { review, loading }, match }) => {
 
 Review.propTypes = {
   getReview: PropTypes.func.isRequired,
-  review: PropTypes.object.isRequired
+  review: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  review: state.review
+const mapStateToProps = (state) => ({
+  review: state.review,
 });
 
-export default connect(
-  mapStateToProps,
-  { getReview }
-)(Review);
+export default connect(mapStateToProps, { getReview })(Review);

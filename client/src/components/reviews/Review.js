@@ -10,31 +10,31 @@ import { connect } from "react-redux";
 const Review = ({
   deleteReview,
   auth,
-  review: { _id, review, name, user, comments, date, book }
+  review: { _id, review, name, user, comments, date, book },
 }) => {
   return (
     <div
       className="
      mb-2"
     >
-      <div className="form border">
+      <div className="form-info border">
         <Link to={`/profile/${user}`}>
           <img src={UserImg} alt="cool guy" className="user-img" />
           <h2>{name}</h2>
         </Link>
       </div>
-      <div className="form border">
+      <div className="form-info border">
         <h2>Book:</h2>
         <h5>{book}</h5>
       </div>
-      <div className="form border">
+      <div className="form-info border">
         <h2>Review:</h2>
         <p>{review}</p>
         <p>
           <Moment format="MM/DD/YYYY">{date}</Moment>
         </p>
       </div>
-      <div className="form border">
+      <div className="form-info border">
         <Link to={`/review/${_id}`}>
           <button className="button button-add">
             Comments {comments.length > 0 && <span>{comments.length}</span>}
@@ -44,7 +44,7 @@ const Review = ({
           <button
             type="button"
             className="button danger"
-            onClick={e => deleteReview(_id)}
+            onClick={(e) => deleteReview(_id)}
           >
             <i className="fas fa-trash-alt"></i>
           </button>
@@ -57,14 +57,11 @@ const Review = ({
 Review.propTypes = {
   review: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  deleteReview: PropTypes.func.isRequired
+  deleteReview: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { deleteReview }
-)(Review);
+export default connect(mapStateToProps, { deleteReview })(Review);

@@ -21,3 +21,7 @@ export const DELETE_REVIEW = "DELETE_REVIEW";
 export const GET_REVIEW = "GET_REVIEW";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
+export const UPLOADED_SUCESS = "UPLOADED_SUCESS";
+export const UPLOADED_FAIL = "UPLOADED_FAIL";
+export const GET_PHOTO = "GET_PHOTO";
+export const PHOTO_ERROR = "PHOTO_ERROR";

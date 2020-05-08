@@ -2,17 +2,22 @@ import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
+import { getCurrentUserPhoto } from "../../actions/image";
+
 import CreateProfile from "../profile-forms/CreateProfile";
 import EditProfile from "../profile-forms/EditProfile";
 
 const Account = ({
   getCurrentProfile,
+  getCurrentUserPhoto,
   auth: { user },
-  profile: { profile, loading }
+  profile: { profile, loading },
+  image: { image },
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [getCurrentProfile]);
+    getCurrentUserPhoto();
+  }, [getCurrentProfile, getCurrentUserPhoto]);
 
   return (
     <div className="centered-content mt-2">
@@ -44,17 +49,18 @@ const Account = ({
 
 Account.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
-
+  image: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  image: state.image,
 });
 
-export default connect(
-  mapStateToProps,
-  { getCurrentProfile }
-)(Account);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  getCurrentUserPhoto,
+})(Account);

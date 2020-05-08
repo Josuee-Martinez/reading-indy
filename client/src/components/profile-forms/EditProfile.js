@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Image from "./Image";
 
 import {
   createProfile,
   getCurrentProfile,
-  deleteAccount
+  deleteAccount,
 } from "../../actions/profile";
 
 const EditProfile = ({
@@ -14,13 +15,13 @@ const EditProfile = ({
   getCurrentProfile,
   deleteAccount,
   profile: { profile, loading },
-  history
+  history,
 }) => {
   const [updatedProfile, setUpdatedProfile] = useState({
     location: "",
     favoriteGenre: "",
     bio: "",
-    favoriteAuthor: ""
+    favoriteAuthor: "",
   });
 
   const { location, favoriteGenre, bio, favoriteAuthor } = updatedProfile;
@@ -34,26 +35,27 @@ const EditProfile = ({
         loading || !profile.favoriteGenre ? "" : profile.favoriteGenre,
       bio: loading || !profile.bio ? "" : profile.bio,
       favoriteAuthor:
-        loading || !profile.favoriteAuthor ? "" : profile.favoriteAuthor
+        loading || !profile.favoriteAuthor ? "" : profile.favoriteAuthor,
     });
   }, [loading, getCurrentProfile]);
 
-  const handleChange = e =>
+  const handleChange = (e) =>
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     createProfile(updatedProfile, history, true);
   };
 
   return (
     <div className="centered-content">
-      <form className="form left-align" onSubmit={handleSubmit}>
+      <Image />
+      <form className="form-info left-align" onSubmit={handleSubmit}>
         <h2>
           <i className="far fa-address-card"></i> Edit your profile.
         </h2>
         <input
-          className="input"
+          className="input-info"
           type="text"
           placeholder="Location"
           name="location"
@@ -63,7 +65,7 @@ const EditProfile = ({
         <small>( Indianapolis, Carmel, Fishers etc... ) </small>
         <br />
         <input
-          className="input"
+          className="input-info"
           type="text"
           placeholder="Favorite Genre"
           name="favoriteGenre"
@@ -73,7 +75,7 @@ const EditProfile = ({
         <small>( Fantasy, YA, Distopia, Philosophy etc... ) </small>
         <br />
         <input
-          className="input"
+          className="input-info"
           type="text"
           placeholder="Favorite Author"
           name="favoriteAuthor"
@@ -82,7 +84,7 @@ const EditProfile = ({
         />
         <small>( Jk Rowling, Orwell, Emerson etc... ) </small>
         <input
-          className="input"
+          className="input-info"
           type="text"
           placeholder="Bio"
           name="bio"
@@ -107,14 +109,15 @@ EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   deleteAccount: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile
+const mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
-export default connect(
-  mapStateToProps,
-  { createProfile, getCurrentProfile, deleteAccount }
-)(withRouter(EditProfile));
+export default connect(mapStateToProps, {
+  createProfile,
+  getCurrentProfile,
+  deleteAccount,
+})(withRouter(EditProfile));

@@ -54,7 +54,7 @@ const Navbar = ({ auth: { authenticated, loading }, logout }) => {
 
   return (
     <Fragment>
-      <nav className="navbar">
+      <nav className="navigation-nav">
         <span className="open-slide">
           <a href="#!" onClick={openSlideMenu}>
             <svg width="30" height="30">
@@ -86,17 +86,14 @@ const Navbar = ({ auth: { authenticated, loading }, logout }) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
-export default connect(
-  mapStateToProps,
-  { logout }
-)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
 
 // const Navbar = () => {
 //   function openSlideMenu() {
