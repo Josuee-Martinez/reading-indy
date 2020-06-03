@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import UserImg from "../../assets/img/bookworm.jpg";
 
 const ProfileInfo = ({
   profile: {
@@ -8,35 +7,32 @@ const ProfileInfo = ({
     bio,
     favoriteGenre,
     favoriteAuthor,
+    photo,
     user: { name },
   },
-  image,
 }) => {
   return (
     <div className="mt-2 mb-2">
       <div className="form-info border">
-        <div>
-          {image === null ? (
-            ""
-          ) : (
-            <div className="centered-content">
-              <img src={image.filePath} alt="" className="user-img" />
-            </div>
-          )}
+        <div className="centered-content">
+          <img src={`/uploads/${photo}`} alt="" className="user-img" />
+          <h1 className="profile-heading">{name}</h1>
         </div>
-        <h1>{name}</h1>
+      </div>
+      <div className="form-info border">
+        <h2 className="profile-heading">Location:</h2>
         <p>{location}</p>
       </div>
       <div className="form-info border">
-        <h2>Favorite Genre.</h2>
+        <h2 className="profile-heading">Favorite Genre:</h2>
         <p>{favoriteGenre}</p>
       </div>
       <div className="form-info border">
-        <h2>Favorite Author</h2>
+        <h2 className="profile-heading">Favorite Author:</h2>
         <p>{favoriteAuthor}</p>
       </div>
       <div className="form-info border">
-        <h2>{name.trim().split(" ")[0]}'s bio</h2>
+        <h2 className="profile-heading">{name.trim().split(" ")[0]}'s bio:</h2>
         <p>{bio}</p>
       </div>
     </div>

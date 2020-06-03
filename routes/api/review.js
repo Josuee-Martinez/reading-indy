@@ -9,12 +9,17 @@ router.post("/", auth, async (req, res) => {
   const { review, book } = req.body.bookReview;
   try {
     const user = await User.findById(req.user.id).select("-password");
+    const profile = await await Profile.findOne({ user: req.user.id });
+    console.log(profile);
+    console.log(user.name);
 
     const bookReview = new Review({
       review,
       book,
       name: user.name,
-      user: req.user.id
+      photo: profile.photo,
+      profile,
+      user: req.user.id,
     });
 
     const newBookReview = await bookReview.save();
@@ -85,11 +90,13 @@ router.post("/comment/:id", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     const review = await Review.findById(req.params.id);
+    const profile = await Profile.findOne({ user: req.user.id });
 
     const comment = {
       review: req.body.comment,
+      photo: profile.photo,
       name: user.name,
-      user: req.user.id
+      user: req.user.id,
     };
 
     review.comments.unshift(comment);
@@ -108,7 +115,7 @@ router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
     const review = await Review.findById(req.params.id);
 
     const comment = review.comments.find(
-      comment => comment.id === req.params.comment_id
+      (comment) => comment.id === req.params.comment_id
     );
 
     if (!comment) {
@@ -120,7 +127,7 @@ router.delete("/comment/:id/:comment_id", auth, async (req, res) => {
     }
 
     const removeIndex = review.comments
-      .map(comment => comment.id)
+      .map((comment) => comment.id)
       .indexOf(req.params.comment_id);
 
     review.comments.splice(removeIndex, 1);

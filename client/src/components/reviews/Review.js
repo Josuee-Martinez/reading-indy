@@ -2,33 +2,31 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-import UserImg from "../../assets/img/bookworm.jpg";
 import { deleteReview } from "../../actions/review";
-
 import { connect } from "react-redux";
 
 const Review = ({
   deleteReview,
   auth,
-  review: { _id, review, name, user, comments, date, book },
+  review: { _id, review, name, user, comments, date, book, photo },
 }) => {
   return (
     <div
       className="
-     mb-2"
+     mb-4"
     >
       <div className="form-info border">
         <Link to={`/profile/${user}`}>
-          <img src={UserImg} alt="cool guy" className="user-img" />
-          <h2>{name}</h2>
+          <img src={`/uploads/${photo}`} alt="user" className="user-img" />
+          <h2 className="profile-heading">{name}</h2>
         </Link>
       </div>
       <div className="form-info border">
-        <h2>Book:</h2>
+        <h2 className="profile-heading">Book:</h2>
         <h5>{book}</h5>
       </div>
       <div className="form-info border">
-        <h2>Review:</h2>
+        <h2 className="profile-heading">Review:</h2>
         <p>{review}</p>
         <p>
           <Moment format="MM/DD/YYYY">{date}</Moment>

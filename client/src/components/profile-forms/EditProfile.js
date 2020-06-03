@@ -37,7 +37,14 @@ const EditProfile = ({
       favoriteAuthor:
         loading || !profile.favoriteAuthor ? "" : profile.favoriteAuthor,
     });
-  }, [loading, getCurrentProfile]);
+  }, [
+    loading,
+    getCurrentProfile,
+    profile.bio,
+    profile.favoriteAuthor,
+    profile.favoriteGenre,
+    profile.location,
+  ]);
 
   const handleChange = (e) =>
     setUpdatedProfile({ ...updatedProfile, [e.target.name]: e.target.value });
@@ -50,7 +57,7 @@ const EditProfile = ({
   return (
     <div className="centered-content">
       <Image />
-      <form className="form-info left-align" onSubmit={handleSubmit}>
+      <form className="profile-user-info left-align" onSubmit={handleSubmit}>
         <h2>
           <i className="far fa-address-card"></i> Edit your profile.
         </h2>

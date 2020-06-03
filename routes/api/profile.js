@@ -49,7 +49,7 @@ router.post("/", auth, async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", ["name"]);
+    const profiles = await Profile.find().populate("user", ["name", "email"]);
     res.json(profiles);
   } catch (err) {
     console.error(err.meassage);
@@ -83,34 +83,34 @@ router.delete("/", auth, async (req, res) => {
 
     res.json({ msg: "this user was removed from our records" });
   } catch (err) {
-    console.error(err.meassage);
+    console.error(err.message);
     res.status(500).send("server error");
   }
 });
 
-router.get("/goodreads/:id", (req, res) => {
-  try {
-    const options = {
-      uri: `https://www.goodreads.com/user/show/${req.params.id}.xml?key=1dQ8N8cVpCf406mkHQgclQ`,
-      method: "GET",
-      headers: { "user-agent": "node.js" },
-    };
+router.put("/photo", auth, async (req, res) => {
+  const profile = await Profile.findOne({ user: req.user.id });
+  if (!profile) return res.status(400).json({ msg: "Profile not found" });
 
-    request(options, (error, response, body) => {
-      if (error) {
-        console.error(error);
-      }
-
-      if (response.statusCode !== 200) {
-        res.status(404).json({ msg: "no user found" });
-      }
-
-      res.json(body);
-    });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("server error");
+  if (!req.files) {
+    return res.status(400).json({ msg: "nomfile" });
   }
+
+  const file = req.files.file;
+
+  file.mv(`./client/public/uploads/${file.name}`, async (err) => {
+    if (err) {
+      console.error(err);
+      return res.json(err);
+    }
+
+    await Profile.findOneAndUpdate({ user: req.user.id }, { photo: file.name });
+
+    res.status(200).json({
+      success: true,
+      data: file.name,
+    });
+  });
 });
 
 module.exports = router;

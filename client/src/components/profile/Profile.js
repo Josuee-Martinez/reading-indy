@@ -3,23 +3,18 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProfileById } from "../../actions/profile";
-import { getImageById } from "../../actions/image";
 
 import ProfileInfo from "./ProfileInfo";
 
 const Profile = ({
   getProfileById,
-  getImageById,
   profile: { profile, loading },
-  image: { image },
   auth,
   match,
 }) => {
   useEffect(() => {
     getProfileById(match.params.id);
-    getImageById(match.params.id);
-    console.log(image);
-  }, [getProfileById, getImageById, match.params.id]);
+  }, [getProfileById, match.params.id]);
 
   return (
     <Fragment>
@@ -29,8 +24,7 @@ const Profile = ({
         ) : (
           <Fragment>
             <div>
-              <ProfileInfo profile={profile} image={image} />
-              {/* <ProfileAbout profile={profile} /> */}
+              <ProfileInfo profile={profile} />
             </div>
             <div className="mb-2">
               <Link to="/profiles">
@@ -47,32 +41,18 @@ const Profile = ({
           </Fragment>
         )}
       </div>
-      {/* <div>
-        {image === null ? (
-          ""
-        ) : (
-          <div className="centered-content">
-            <img src={image.filePath} alt="" />
-          </div>
-        )}
-      </div> */}
     </Fragment>
   );
 };
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
-  getImageById: PropTypes.func.isRequired,
-  image: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
-  image: state.image,
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProfileById, getImageById })(
-  Profile
-);
+export default connect(mapStateToProps, { getProfileById })(Profile);

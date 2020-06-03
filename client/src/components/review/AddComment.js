@@ -12,7 +12,10 @@ const AddComment = ({ reviewId, addComment }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="form-info left-align">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="profile-user-info left-align"
+    >
       <textarea
         name="review"
         cols="30"

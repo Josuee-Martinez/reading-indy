@@ -11,7 +11,7 @@ const Home = ({ authenticated }) => {
     <Fragment>
       <div className="landing-section">
         <div className="landing">
-          <h1 className="landing-heading">Welctome to Reading Indy.</h1>
+          <h1 className="landing-heading">Welcome to Reading Indy.</h1>
           <p className="landing-paragraph">
             Join the Indianapolis reading community!
           </p>
@@ -25,11 +25,11 @@ const Home = ({ authenticated }) => {
 };
 
 Home.propTypes = {
-  authenticated: PropTypes.bool
+  authenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  authenticated: state.auth.authenticated
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
 });
 
 export default connect(mapStateToProps)(Home);

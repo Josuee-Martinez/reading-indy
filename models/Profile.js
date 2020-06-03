@@ -17,6 +17,10 @@ const ProfileSchema = new mongoose.Schema({
   favoriteAuthor: {
     type: String,
   },
+  photo: {
+    type: String,
+    default: "no-user.jpg",
+  },
   date: {
     type: Date,
     default: Date.now,

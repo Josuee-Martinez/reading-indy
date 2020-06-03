@@ -13,13 +13,13 @@ const Reviews = ({ getReviews, review: { reviews, loading } }) => {
     ""
   ) : (
     <div className="centered-content mt-2">
-      <h1 className="heading-main">
+      <h1 className="member-heading">
         {" "}
         <i className="fas fa-book-reader"></i> Book Reviews
       </h1>
       <AddReview />
       <div>
-        {reviews.map(review => (
+        {reviews.map((review) => (
           <Review key={review._id} review={review} />
         ))}
       </div>
@@ -29,14 +29,11 @@ const Reviews = ({ getReviews, review: { reviews, loading } }) => {
 
 Reviews.propTypes = {
   getReviews: PropTypes.func.isRequired,
-  review: PropTypes.object.isRequired
+  review: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  review: state.review
+const mapStateToProps = (state) => ({
+  review: state.review,
 });
 
-export default connect(
-  mapStateToProps,
-  { getReviews }
-)(Reviews);
+export default connect(mapStateToProps, { getReviews })(Reviews);

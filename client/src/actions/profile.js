@@ -98,3 +98,13 @@ export const deleteAccount = () => async (dispatch) => {
     });
   }
 };
+
+export const uploadProfilePhoto = (image) => async (dispatch) => {
+  try {
+    const res = await axios.put("/api/profile/photo", image);
+    dispatch({ type: GET_PROFILE, payload: res.data });
+    dispatch(setAlert("Photo uploaded!", "success"));
+  } catch (error) {
+    dispatch({ type: PROFILE_ERROR });
+  }
+};

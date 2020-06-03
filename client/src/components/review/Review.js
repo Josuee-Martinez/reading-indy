@@ -4,10 +4,8 @@ import Moment from "react-moment";
 import { Link } from "react-router-dom";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
-
 import { connect } from "react-redux";
 import { getReview } from "../../actions/review";
-import UserImg from "../../assets/img/bookworm.jpg";
 
 const Review = ({ getReview, review: { review, loading }, match }) => {
   useEffect(() => {
@@ -26,8 +24,12 @@ const Review = ({ getReview, review: { review, loading }, match }) => {
       </Link>
       <div className="form-info border mt-2">
         <Link to={`/profile/${review.user}`}>
-          <img src={UserImg} alt="cool guy" className="user-img" />
-          <h2>{review.name}</h2>
+          <img
+            src={`/uploads/${review.photo}`}
+            alt="cool guy"
+            className="user-img"
+          />
+          <h2 className="profile-heading">{review.name}</h2>
         </Link>
       </div>
 

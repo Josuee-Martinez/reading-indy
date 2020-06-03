@@ -29,7 +29,10 @@ const AddReview = ({ addReview }) => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="form-info left-align">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="profile-user-info left-align"
+    >
       <input
         type="text"
         name="book"

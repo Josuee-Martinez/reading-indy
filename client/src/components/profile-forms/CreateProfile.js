@@ -27,7 +27,7 @@ const CreateProfile = ({ createProfile, history }) => {
   return (
     <div className="centered-content">
       <Image />
-      <form className="form-info left-align" onSubmit={handleSubmit}>
+      <form className="profile-user-info left-align" onSubmit={handleSubmit}>
         <h2>
           <i className="far fa-address-card"></i> Create your profile.
         </h2>

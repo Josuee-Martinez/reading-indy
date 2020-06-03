@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import { getProfiles } from "../../actions/profile";
-// import { getProfil } from "../../actions/profile";
 
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
@@ -16,7 +15,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         ""
       ) : (
         <Fragment>
-          <h1>
+          <h1 className="member-heading">
             <i className="far fa-address-card"> </i> Reading Indy members
           </h1>
           <div>

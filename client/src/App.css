@@ -19,7 +19,7 @@ body {
 
 /* NAVIGATION STYLES */
 .navigation-nav {
-  background-color: #f0eafc;
+  background-color: #5bc0be;
   overflow: hidden;
   height: 63px;
 }
@@ -27,7 +27,7 @@ body {
 .navigation-nav a {
   float: left;
   display: block;
-  color: #000;
+  color: #081c15;
   text-align: center;
   padding: 16px 16px;
   text-decoration: none;
@@ -47,7 +47,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  color: #000;
+  color: #081c15;
   background-color: #111;
   opacity: 0.9;
   overflow-x: hidden;
@@ -103,7 +103,7 @@ li {
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: #fff;
+  color: #5bc0be;
 }
 
 .landing-heading {
@@ -118,46 +118,52 @@ li {
 
 .btn {
   background-color: rgba(0, 0, 0, 0.336);
-  color: #f0eafc;
+  color: #5bc0be;
   font-size: 1em;
-  border: 1px solid #f0eafc;
+  border: 1px solid #5bc0be;
   padding: 0.7em;
   border-radius: 50px;
 }
 
 .btn:hover {
-  background-color: #f0eafc;
+  background-color: #5bc0be;
   color: #000;
   border: 1px solid #000;
 }
 
 /* SIGNUP STYLES */
 .form-info {
-  color: #383838;
+  color: #081c15;
   position: relative;
   width: 500px;
   margin: auto;
-
   overflow: hidden;
   padding: 2rem 2rem 2rem 2rem;
+  border: 1px solid #5bc0be !important;
 }
 
-.auth-form h2 {
-  text-align: center;
+.profile-user-info {
+  color: #081c15;
+  position: relative;
+  width: 500px;
+  margin: auto;
+  overflow: hidden;
+  padding: 2rem 0 2rem 0;
 }
 
 .input-info {
   width: 100%;
   padding: 0.5em;
-  /* margin: 0.5em 0 0.5em 0; */
-  outline: none;
+}
+
+.input-info:hover {
+  outline: 1px solid #5bc0be;
 }
 
 .button {
   margin: 1em 1em 0 0;
   padding: 0.5em;
   width: 9rem;
-  /* border: none; */
 }
 
 .danger {
@@ -174,7 +180,7 @@ li {
 }
 
 .button-add {
-  background-color: #f0eafc;
+  background-color: #5bc0be;
 }
 
 .alert {
@@ -186,20 +192,21 @@ li {
 
 .toggle-div {
   width: 500px;
-  background-color: #f0eafc;
+  background-color: #5bc0be;
   padding: 1rem 2rem 1rem 2rem;
   margin: auto;
   text-align: center;
 }
 
 .toggle-div a {
-  color: #383838;
+  color: #081c15;
 }
 
 .toggle-div-2 {
   width: 500px;
-  background-color: #f0eafc;
-  color: #383838;
+  background-color: #5bc0be;
+
+  color: #081c15;
   padding: 0.6rem 2rem 0.6rem 2rem;
   margin: auto;
   text-align: center;
@@ -211,7 +218,7 @@ li {
 }
 
 .box:hover {
-  box-shadow: 2px 2px 8px 2px #aca7b6;
+  box-shadow: 2px 2px 8px 2px #5bc0be;
 }
 
 .mt-2 {
@@ -222,24 +229,31 @@ li {
   margin-bottom: 2rem;
 }
 
+.mb-4 {
+  margin-bottom: 4rem;
+}
 .user-img {
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
 }
 
 .border {
-  border: 1px solid #f0eafc;
+  border: 1px solid #5bc0be;
 }
 
 .left-align {
   text-align: left;
 }
 
-.form-info a {
-  color: #383838;
-  text-decoration: none;
+.member-heading {
+  color: #5bc0be;
 }
+
+.profile-heading {
+  color: #5bc0be;
+}
+
 /* MEDIA QUERIES */
 @media (max-width: 540px) {
   .form-info {

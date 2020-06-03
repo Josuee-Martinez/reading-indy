@@ -1,22 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import UserImg from "../../assets/img/bookworm.jpg";
 import { Link } from "react-router-dom";
 
 const Profile = ({
   profile: {
     user: { _id, name },
     location,
+    photo,
   },
 }) => {
   return (
-    <div className="form-info border mt-2 box">
-      {/* <img src={UserImg} alt="user" className="user-img" /> */}
-      <h1>{name}</h1>
-      <h3>{location && <span>{location}</span>}</h3>
-      <Link to={`/profile/${_id}`}>
-        <button className="button button-add">Full Profile</button>
-      </Link>
+    <div className="mt-2 mb-2">
+      <div className="form-info border">
+        <img src={`/uploads/${photo}`} alt="user" className="user-img" />
+        <h1>{name}</h1>
+
+        <h3>{location && <span>{location}</span>}</h3>
+        <Link to={`/profile/${_id}`}>
+          <button className="button button-add">View Profile</button>
+        </Link>
+      </div>
     </div>
   );
 };
